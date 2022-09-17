@@ -11,19 +11,14 @@ let third = document.getElementById('third');
 let fourth = document.getElementById('fourth');
 let catImage = document.getElementById('catImage');
 let correctAns = Math.floor(Math.random() * 4);
+let choice01 = false;
+let choice02 = false;
+let choice03 = false;
+let choice04 = false;
 
-// check if the answer is correct when the button is clicked
-function checkAns(ansNum) {
-    if (ansNum == correctAns) {
-        alert("Are you sure?");
-        alert("Correct!!!!");
-        RandomCat();
-        correctAns = Math.floor(Math.random() * 4);
-    } else {
-        alert("Are you sure?");
-        alert("Wrong...");
-    }
-    
+// the function called when the game starts
+function GameStart() {
+    location.href = "index02.html";
 }
 
 function RandomCat() {
@@ -46,8 +41,44 @@ function RandomCat() {
     second.innerHTML = cats[num02];
     third.innerHTML = cats[num03];
     fourth.innerHTML = cats[num04];
+    
+    choice01 = false;
+    choice02 = false;
+    choice03 = false;
+    choice04 = false;
 
-    let randomNum = Math.floor(Math.random() * 20);
-    catImage.src = "./images/" + catsImg[randomNum];
+    if(correctAns == 0){
+        choice01 = true;
+    } else if(correctAns == 1) {
+        choice02 = true;
+    } else if(correctAns == 2) {
+        choice03 = true;
+    } else {
+        choice04 = true;
+    }
+
+    if(choice01){
+        catImage.src = "./images/" + catsImg[num01];
+    } else if(choice02){
+        catImage.src = "./images/" + catsImg[num02];
+    } else if (choice03){
+        catImage.src = "./images/" + catsImg[num03];
+    } else{
+        catImage.src = "./images/" + catsImg[num04];
+    }
 }
 
+// check if the answer is correct or not
+function checkAns(ansNum) {
+    if (ansNum == correctAns) {
+        alert("Are you sure?");
+        alert("Correct!!!!");
+        correctAns = Math.floor(Math.random() * 4);
+        RandomCat();
+    } else {
+        alert("Are you sure?");
+        alert("Wrong...");
+        correctAns = Math.floor(Math.random() * 4);
+        RandomCat();
+    }
+}
