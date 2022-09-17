@@ -12,7 +12,7 @@ let fourth = document.getElementById('fourth');
 let catImage = document.getElementById('catImage');
 let correctAns = Math.floor(Math.random() * 4);
 
-// check if the answer is correct when the button is clicked
+// check if the answer is correct or not
 function checkAns(ansNum) {
     if (ansNum == correctAns) {
         alert("Are you sure?");
@@ -24,6 +24,11 @@ function checkAns(ansNum) {
         alert("Wrong...");
     }
     
+}
+
+// the function called when the game starts
+function GameStart() {
+    location.href = "index02.html";
 }
 
 function RandomCat() {
