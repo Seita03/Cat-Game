@@ -4,27 +4,26 @@ const cats = ["Scottish Fold","Munchkin","Mix","American Shorhair","Norwegian Fo
 // images of cats
 const catsImg = ["ScottishFold.jpg","Munchkin.jpg","Mix.jpg","AmericanShorthair.jpg","NorwegianForest.jpg","BritishShorthair.jpg","Ragdoll.jpg","Minuet.jpg","Bengali.jpg","Cybelean.jpg","MaineCoon.jpg","Russian.jpg","Ragamuffin.png","ExoticShorthair.jpg","Chinchilla.jpg","Somali.jpg","Persia.jpg","AmericanCurl.jpg","Exotic.jpg","Japanese.jpg"];
 
-// get elements of choices and images from HTML
+// public variables
 let first = document.getElementById('first');
 let second = document.getElementById('second');
 let third = document.getElementById('third');
 let fourth = document.getElementById('fourth');
 let catImage = document.getElementById('catImage');
+let correctAns = Math.floor(Math.random() * 4);
 
-// the functiond called when the answer was correct
-function  CorrectAnswer() {
-    alert("Are you sure?");
-    alert("Correct!!!!");
-    RandomCat();
-    RandomCatImg();
-}
-
-// the function callled when the asnwer was not correct
-function WrongAnswer() {
-    alert("Are you sure?");
-    alert("Incorrect...");
-    RandomCat();
-    RandomCatImg();
+// check if the answer is correct when the button is clicked
+function checkAns(ansNum) {
+    if (ansNum == correctAns) {
+        alert("Are you sure?");
+        alert("Correct!!!!");
+        RandomCat();
+        correctAns = Math.floor(Math.random() * 4);
+    } else {
+        alert("Are you sure?");
+        alert("Wrong...");
+    }
+    
 }
 
 function RandomCat() {
@@ -52,7 +51,3 @@ function RandomCat() {
     catImage.src = "./images/" + catsImg[randomNum];
 }
 
-// the function called when the game starts
-function GameStart() {
-    location.href = "index02.html";
-}
