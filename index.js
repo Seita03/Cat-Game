@@ -84,39 +84,79 @@ function RandomCat() {
         choice04 = true;
     }
 
-    // make sure the same questions are not used and to display the correct image
     if(choice01){
-        if(!alreadyUsedNum.includes(num01)){
-            catImage.src = "./images/" + catsImg[num01];
-        } else {
+        while(alreadyUsedNum.includes(num01)){
             decideFirstNumber();
         }
-        alreadyUsedNum.push(num01);
-        // console.log(alreadyUsedNum);
-    } else if(choice02){
-        if(!alreadyUsedNum.includes(num02)){
-            catImage.src = "./images/" + catsImg[num02];
-        } else {
+        catImage.src = "./images/" + catsImg[num01];
+        console.log(correctAns);
+        // if(!alreadyUsedNum.includes(num01)){
+        //     catImage.src = "./images/" + catsImg[num01];
+        //     console.log(correctAns);
+        //     console.log(alreadyUsedNum.includes(num01));
+        // } else {
+        //     decideFirstNumber();
+        // }
+    }
+
+    if(choice02){
+        while(alreadyUsedNum.includes(num02)){
             decideSecondNumber();
         }
-        alreadyUsedNum.push(num02);
-        // console.log(alreadyUsedNum);
-    } else if (choice03){
-        if(!alreadyUsedNum.includes(num03)){
-            catImage.src = "./images/" + catsImg[num03];
-        } else {
+        catImage.src = "./images/" + catsImg[num02];
+        console.log(correctAns);
+        // if(!alreadyUsedNum.includes(num02)){
+        //     catImage.src = "./images/" + catsImg[num02];
+        //     console.log(correctAns);
+        //     console.log(alreadyUsedNum.includes(num02));
+        // } else {
+        //     decideSecondNumber();
+        // }
+    }
+
+    if(choice03) {
+        while(alreadyUsedNum.includes(num03)){
             decideThirdNumber();
         }
-        alreadyUsedNum.push(num03);
-        // console.log(alreadyUsedNum);
-    } else{
-        if(!alreadyUsedNum.includes(num04)){
-            catImage.src = "./images/" + catsImg[num04];
-        } else {
+        catImage.src = "./images/" + catsImg[num03];
+        console.log(correctAns);
+        // if(!alreadyUsedNum.includes(num03)){
+        //     catImage.src = "./images/" + catsImg[num03];
+        //     console.log(correctAns);
+        //     console.log(alreadyUsedNum.includes(num03));
+        // } else {
+        //     decideThirdNumber();
+        // }
+    }
+
+    if(choice04) {
+        while(alreadyUsedNum.includes(num04)){
             decideFourthNumber();
         }
+        catImage.src = "./images/" + catsImg[num04];
+        console.log(correctAns);
+        // if(!alreadyUsedNum.includes(num04)){
+        //     catImage.src = "./images/" + catsImg[num04];
+        //     console.log(correctAns);
+        //     console.log(alreadyUsedNum.includes(num04));
+        // } else {
+        //     decideFourthNumber();
+        // }
+    }
+
+    // make sure the same questions are not used and to display the correct image
+    if(choice01){
+        alreadyUsedNum.push(num01);
+        console.log(alreadyUsedNum);
+    } else if(choice02){
+        alreadyUsedNum.push(num02);
+        console.log(alreadyUsedNum);
+    } else if (choice03){
+        alreadyUsedNum.push(num03);
+        console.log(alreadyUsedNum);
+    } else{
         alreadyUsedNum.push(num04);
-        // console.log(alreadyUsedNum);
+        console.log(alreadyUsedNum);
     }
     
     first.innerHTML = cats[num01];
