@@ -159,3 +159,7 @@ function checkAns(ansNum) {
         RandomCat();
     }
 }
+
+function restart() {
+    location.href = "index.html";
+}

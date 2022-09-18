@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="index.css">
+        <title>Cat Game</title>
+    </head>
+    <body>
+        <header class="d-flex align-items-center">
+            <img src="./images/logo02.png" alt="logo" class="img-fluid logoImg">
+            <h4>🐾Guess the Cat Breed🐾</h4>
+        </header>
+        <main id="endScreen">
+            <div class="d-flex flex-column align-items-center">
+                <img src="./images/StartCat.png" alt="StartImage" class="img-fluid startImg">
+                <ul class="d-flex flex-column align-items-center endList mr-5">
+                    <li id = "score"><strong>Your Score:</strong></li>
+                    <li><button type="button" class="btn restartBtn mt-3" onclick="restart()">Restart</button></li>
+                </ul>
+            </div>
+        </main>
+        <footer class="d-flex justify-content-center">
+            <small>@2022</small>
+        </footer>
+        <script src="index.js"></script>
+    </body>
 </html>
