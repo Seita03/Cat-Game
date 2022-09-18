@@ -26,7 +26,7 @@ main {
   width: 20%;
 }
 
-.startBtn {
+.startBtn, .restartBtn {
   background-color: rgba(193, 255, 248, 1);
   position: relative;
   z-index: 1;
@@ -34,7 +34,8 @@ main {
   transition: .3s;
 }
 
-.startBtn::before {
+.startBtn::before,
+.restartBtn::before {
   content: "";
   width: 90%;
   height: 10px;
@@ -47,11 +48,13 @@ main {
   transition: .3s;
 }
 
-.startBtn:hover {
+.startBtn:hover,
+.restartBtn:hover {
   transform: translateY(-7px);
 } 
 
-.startBtn:hover::before {
+.startBtn:hover::before,
+.restartBtn:hover::before {
   transform: translateY(7px);
   opacity: 1;
 }
@@ -72,4 +75,16 @@ main {
 
 footer {
   background-color: rgba(255, 248, 189, 1);
+}
+
+.gameScreen {
+  display: none;
+}
+
+.endScreen {
+  display: none; 
+}
+
+.endList {
+  list-style: none;
 }

@@ -13,6 +13,7 @@ let second = document.getElementById('second');
 let third = document.getElementById('third');
 let fourth = document.getElementById('fourth');
 let catImage = document.getElementById('catImage');
+let qNum = document.getElementById('qNum');
 let correctAns = Math.floor(Math.random() * 4);
 let num01;
 let num02;
@@ -22,10 +23,29 @@ let choice01 = false;
 let choice02 = false;
 let choice03 = false;
 let choice04 = false;
+let maxQuizNum = 11;
+let quizNum = 0;
+let gameEnd = false;
+let score = 0;
+let gameScreen = document.getElementById("gameScreen");
+let endScreen = document.getElementById("endScreen");
+let scoreTxt = document.getElementById('score');
 
 // the function called when the game starts
 function GameStart() {
     location.href = "index02.html";
+    changeQuizText();
+}
+
+// change quiz numbers and also end the game if the number reaches 10.
+function changeQuizText() {
+    quizNum++
+    for(let i = 0; i < quizNum; i++){
+        qNum.innerHTML = quizNum;
+        if(quizNum == maxQuizNum){
+            gameEnd = true;
+        }
+    }
 }
 
 // assign the cats' numbers to each choices
@@ -51,6 +71,7 @@ function decideFourthNumber() {
 
 // display and change the cat images and four choices
 function RandomCat() {
+    changeQuizText();
     // call number decision funcions
     decideFirstNumber();
     decideSecondNumber();
@@ -86,43 +107,44 @@ function RandomCat() {
 
     // make sure the same questions are not used and to display the correct image
     if(choice01){
-        if(!alreadyUsedNum.includes(num01)){
-            catImage.src = "./images/" + catsImg[num01];
-        } else {
+        while(alreadyUsedNum.includes(num01)){
             decideFirstNumber();
         }
+        catImage.src = "./images/" + catsImg[num01];
         alreadyUsedNum.push(num01);
-        // console.log(alreadyUsedNum);
-    } else if(choice02){
-        if(!alreadyUsedNum.includes(num02)){
-            catImage.src = "./images/" + catsImg[num02];
-        } else {
+    }
+
+    if(choice02){
+        while(alreadyUsedNum.includes(num02)){
             decideSecondNumber();
         }
+        catImage.src = "./images/" + catsImg[num02];
         alreadyUsedNum.push(num02);
-        // console.log(alreadyUsedNum);
-    } else if (choice03){
-        if(!alreadyUsedNum.includes(num03)){
-            catImage.src = "./images/" + catsImg[num03];
-        } else {
+    }
+
+    if(choice03) {
+        while(alreadyUsedNum.includes(num03)){
             decideThirdNumber();
         }
+        catImage.src = "./images/" + catsImg[num03];
         alreadyUsedNum.push(num03);
-        // console.log(alreadyUsedNum);
-    } else{
-        if(!alreadyUsedNum.includes(num04)){
-            catImage.src = "./images/" + catsImg[num04];
-        } else {
+    }
+
+    if(choice04) {
+        while(alreadyUsedNum.includes(num04)){
             decideFourthNumber();
         }
+        catImage.src = "./images/" + catsImg[num04];
         alreadyUsedNum.push(num04);
-        // console.log(alreadyUsedNum);
     }
-    
+
+    // change the texts of buttons
     first.innerHTML = cats[num01];
     second.innerHTML = cats[num02];
     third.innerHTML = cats[num03];
     fourth.innerHTML = cats[num04];
+
+    endGame();
 }
 
 // check if the answer is correct or not
@@ -131,6 +153,8 @@ function checkAns(ansNum) {
         alert("Are you sure?");
         alert("Correct!!!!");
         correctAns = Math.floor(Math.random() * 4);
+        score++
+        console.log(score);
         RandomCat();
     } else {
         alert("Are you sure?");
@@ -138,4 +162,16 @@ function checkAns(ansNum) {
         correctAns = Math.floor(Math.random() * 4);
         RandomCat();
     }
+}
+
+function endGame(){
+    if(gameEnd){
+        gameScreen.classList.add('gameScreen');
+        endScreen.classList.remove('endScreen');
+        scoreTxt.innerHTML = score;
+    }
+}
+
+function restart() {
+    location.href = "index.html";
 }
