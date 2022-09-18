@@ -13,6 +13,7 @@ let second = document.getElementById('second');
 let third = document.getElementById('third');
 let fourth = document.getElementById('fourth');
 let catImage = document.getElementById('catImage');
+let qNum = document.getElementById('qNum');
 let correctAns = Math.floor(Math.random() * 4);
 let num01;
 let num02;
@@ -22,10 +23,25 @@ let choice01 = false;
 let choice02 = false;
 let choice03 = false;
 let choice04 = false;
+let maxQuizNum = 11;
+let quizNum = 0;
+let gameEnd = false;
 
 // the function called when the game starts
 function GameStart() {
     location.href = "index02.html";
+    changeQuizText();
+}
+
+// change quiz numbers and also end the game if the number reaches 10.
+function changeQuizText() {
+    quizNum++
+    for(let i = 0; i < quizNum; i++){
+        qNum.innerHTML = quizNum;
+        if(quizNum == maxQuizNum){
+            gameEnd = true;
+        }
+    }
 }
 
 // assign the cats' numbers to each choices
@@ -51,6 +67,7 @@ function decideFourthNumber() {
 
 // display and change the cat images and four choices
 function RandomCat() {
+    changeQuizText();
     // call number decision funcions
     decideFirstNumber();
     decideSecondNumber();
@@ -84,19 +101,13 @@ function RandomCat() {
         choice04 = true;
     }
 
+    // make sure the same questions are not used and to display the correct image
     if(choice01){
         while(alreadyUsedNum.includes(num01)){
             decideFirstNumber();
         }
         catImage.src = "./images/" + catsImg[num01];
-        console.log(correctAns);
-        // if(!alreadyUsedNum.includes(num01)){
-        //     catImage.src = "./images/" + catsImg[num01];
-        //     console.log(correctAns);
-        //     console.log(alreadyUsedNum.includes(num01));
-        // } else {
-        //     decideFirstNumber();
-        // }
+        alreadyUsedNum.push(num01);
     }
 
     if(choice02){
@@ -104,14 +115,7 @@ function RandomCat() {
             decideSecondNumber();
         }
         catImage.src = "./images/" + catsImg[num02];
-        console.log(correctAns);
-        // if(!alreadyUsedNum.includes(num02)){
-        //     catImage.src = "./images/" + catsImg[num02];
-        //     console.log(correctAns);
-        //     console.log(alreadyUsedNum.includes(num02));
-        // } else {
-        //     decideSecondNumber();
-        // }
+        alreadyUsedNum.push(num02);
     }
 
     if(choice03) {
@@ -119,14 +123,7 @@ function RandomCat() {
             decideThirdNumber();
         }
         catImage.src = "./images/" + catsImg[num03];
-        console.log(correctAns);
-        // if(!alreadyUsedNum.includes(num03)){
-        //     catImage.src = "./images/" + catsImg[num03];
-        //     console.log(correctAns);
-        //     console.log(alreadyUsedNum.includes(num03));
-        // } else {
-        //     decideThirdNumber();
-        // }
+        alreadyUsedNum.push(num03);
     }
 
     if(choice04) {
@@ -134,35 +131,18 @@ function RandomCat() {
             decideFourthNumber();
         }
         catImage.src = "./images/" + catsImg[num04];
-        console.log(correctAns);
-        // if(!alreadyUsedNum.includes(num04)){
-        //     catImage.src = "./images/" + catsImg[num04];
-        //     console.log(correctAns);
-        //     console.log(alreadyUsedNum.includes(num04));
-        // } else {
-        //     decideFourthNumber();
-        // }
+        alreadyUsedNum.push(num04);
     }
 
-    // make sure the same questions are not used and to display the correct image
-    if(choice01){
-        alreadyUsedNum.push(num01);
-        console.log(alreadyUsedNum);
-    } else if(choice02){
-        alreadyUsedNum.push(num02);
-        console.log(alreadyUsedNum);
-    } else if (choice03){
-        alreadyUsedNum.push(num03);
-        console.log(alreadyUsedNum);
-    } else{
-        alreadyUsedNum.push(num04);
-        console.log(alreadyUsedNum);
-    }
-    
+    // change the texts of buttons
     first.innerHTML = cats[num01];
     second.innerHTML = cats[num02];
     third.innerHTML = cats[num03];
     fourth.innerHTML = cats[num04];
+
+    if(gameEnd){
+        location.href = "index03.html";
+    }
 }
 
 // check if the answer is correct or not
