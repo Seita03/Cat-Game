@@ -26,6 +26,10 @@ let choice04 = false;
 let maxQuizNum = 11;
 let quizNum = 0;
 let gameEnd = false;
+let score = 0;
+let gameScreen = document.getElementById("gameScreen");
+let endScreen = document.getElementById("endScreen");
+let scoreTxt = document.getElementById('score');
 
 // the function called when the game starts
 function GameStart() {
@@ -140,9 +144,7 @@ function RandomCat() {
     third.innerHTML = cats[num03];
     fourth.innerHTML = cats[num04];
 
-    if(gameEnd){
-        location.href = "index03.html";
-    }
+    endGame();
 }
 
 // check if the answer is correct or not
@@ -151,12 +153,22 @@ function checkAns(ansNum) {
         alert("Are you sure?");
         alert("Correct!!!!");
         correctAns = Math.floor(Math.random() * 4);
+        score++
+        console.log(score);
         RandomCat();
     } else {
         alert("Are you sure?");
         alert("Wrong...");
         correctAns = Math.floor(Math.random() * 4);
         RandomCat();
+    }
+}
+
+function endGame(){
+    if(gameEnd){
+        gameScreen.classList.add('gameScreen');
+        endScreen.classList.remove('endScreen');
+        scoreTxt.innerHTML = score;
     }
 }
 
